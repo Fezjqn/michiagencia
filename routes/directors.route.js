@@ -10,6 +10,10 @@ const directors = [
     id: 002,
     name: 'MichiAlicia',
   },
+  {
+    id: 003,
+    name: 'MichiRogoberto',
+  },
 ];
 
 directorsRouter.get('/api/directors', (req, res) => {
@@ -31,5 +35,22 @@ directorsRouter.get('/api/directors/:id', (req, res) => {
     });
   }
 });
+
+direcotrsRouter.post('/api/directors', (req, res) => {
+  console.log(req.body);
+
+  const { name } = req.body;
+  let id = newId();
+
+  const newDirector = { id, name };
+
+  directors.push(newDirector);
+
+  res.json({
+    status: 200,
+    director: newDirector,
+  })
+})
+
 
 module.exports = directorsRouter;
